@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * Created by Pépère on 11/06/2017.
+ * Classe permettant de créer une séance et de l'ajouter dans la base de données "historique de séances"
  */
 
 public class WorkOut {

@@ -13,6 +13,9 @@ import java.util.Locale;
 
 /**
  * Created by Pépère on 11/06/2017.
+ * Handler de la base de données "historique de séances".
+ * Crée et remplis l'historique
+ * Permet la communication avec cette DB
  */
 
 public class WODBHandler extends SQLiteOpenHelper {
@@ -70,14 +73,14 @@ public class WODBHandler extends SQLiteOpenHelper {
         String date = dateFormat.format(WOdate);
         int NSets = WO.get_NSets();
         ArrayList<Set> Sets = WO.get_Sets();
-        for (int i_set=0; i_set<1/*NSets*/; i_set++){
+        for (int i_set=0; i_set<NSets; i_set++){
             int NExercises = Sets.get(i_set).get_NExercises();
             ArrayList<Integer> NReps = Sets.get(i_set).get_NReps();
             ArrayList<Double> Weightkg = Sets.get(i_set).get_Weightskg();
             ArrayList<Double> WeightRM = Sets.get(i_set).get_WeightsRM();
             ArrayList<Integer> WorkTime = Sets.get(i_set).get_WorkTime();
             ArrayList<Integer> RestTimeForExercise = Sets.get(i_set).get_RestTimeForExercises();
-            for (int i_ex=0; i_ex<1/*NExercises*/; i_ex++){
+            for (int i_ex=0; i_ex<NExercises; i_ex++){
                 ContentValues values = new ContentValues();
                 values.put(COLUMN_DATE,date);
                 values.put(COLUMN_SETNB,i_set+1);
@@ -102,7 +105,7 @@ public class WODBHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_WORKOUTS + " WHERE 1";
         Cursor c = db.rawQuery(query,null);
         c.moveToFirst();
-        //while(!c.isAfterLast()){
+        while(!c.isAfterLast()){
             dbString += c.getString(c.getColumnIndex(COLUMN_DATE));
             dbString += ' ';
             dbString += c.getString(c.getColumnIndex(COLUMN_EXERCISE));
@@ -111,7 +114,9 @@ public class WODBHandler extends SQLiteOpenHelper {
             dbString += ' ';
             dbString += c.getString(c.getColumnIndex(COLUMN_NREPS));
             dbString += '\n';
-        //}
+            c.moveToNext();
+        }
+        c.close();
         db.close();
         return dbString;
     }

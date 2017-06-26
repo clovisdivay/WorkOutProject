@@ -2,6 +2,8 @@ package test.workoutproject;
 
 /**
  * Created by Pépère on 11/06/2017.
+ * Classe "exercice" pour remplir et récupérer depuis une base de données.
+ * Permet également de construire une séance.
  */
 
 public class Exercise {

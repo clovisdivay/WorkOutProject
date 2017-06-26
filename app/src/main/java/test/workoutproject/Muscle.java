@@ -2,6 +2,7 @@ package test.workoutproject;
 
 /**
  * Created by Pépère on 11/06/2017.
+ * Classe "muscle" pour remplir et récupérer depuis une base de données.
  */
 
 public class Muscle {

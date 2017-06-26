@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * Created by Pépère on 11/06/2017.
+ * Classe de création d'un set/multiset
+ * S'ajoute dans une séance (workout)
  */
 
 public class Set {
@@ -68,29 +70,31 @@ public class Set {
     }
     public Set(Exercise _Exercise, int _NSets, int _NReps, double _Weight, String Mode, int _RestTimeForSet) {
         this._NExercises = 1;
-        this._Exercises = new ArrayList<Exercise>();
+        this._Exercises = new ArrayList<>();
         this._Exercises.add(_Exercise);
         this._NSets = _NSets;
-        this._NReps = new ArrayList<Integer>();
+        this._NReps = new ArrayList<>();
         this._NReps.add(_NReps);
         this._RestTimeForSet = _RestTimeForSet;
 
-        if (Mode == "kg") {
-            this._Weightkg = new ArrayList<Double>();
+        this.set_WeightForExercise(0,_Weight,Mode);
+
+/*        if (Mode.equals("kg")) {
+            this._Weightkg = new ArrayList<>();
             this._Weightkg.add(_Weight);
-            this._WeightRM = new ArrayList<Double>();
+            this._WeightRM = new ArrayList<>();
             this._WeightRM.add(ConvertKgToRM(_Exercise, _Weight));
         }
-        else if (Mode == "rm") {
-            this._WeightRM = new ArrayList<Double>();
+        else if (Mode.equals("rm")) {
+            this._WeightRM = new ArrayList<>();
             this._WeightRM.add(_Weight);
-            this._Weightkg = new ArrayList<Double>();
+            this._Weightkg = new ArrayList<>();
             this._Weightkg.add(ConvertRMToKg(_Exercise,_Weight));
         }
         else {
             System.out.println("Error: Unknown weight setting mode! \n Please specify weight in \'kg\' or \'rm\' mode.");
         }
-
+*/
         this._WorkTime = new ArrayList<>();
         this._RestTimeForExercise = new ArrayList<>();
         for (int i=0; i<_NExercises; i++){
@@ -203,20 +207,21 @@ public class Set {
     }
 
     public void set_WeightForExercise(int i, double _Weight, String Mode) {
-        if (Mode == "kg") {
-            this._Weightkg = new ArrayList<Double>();
-            this._Weightkg.add(_Weight);
-            this._WeightRM = new ArrayList<Double>();
-            this._WeightRM.add(ConvertKgToRM(this._Exercises.get(i),_Weight));
-        }
-        else if (Mode == "rm") {
-            this._WeightRM = new ArrayList<Double>();
-            this._WeightRM.add(_Weight);
-            this._Weightkg = new ArrayList<Double>();
-            this._Weightkg.add(ConvertRMToKg(this._Exercises.get(i),_Weight));
-        }
-        else {
-            System.out.println("Error: Unknown weight setting mode! \n Please specify weight in \'kg\' or \'rm\' mode.");
+        switch(Mode){
+            case "kg":
+                this._Weightkg = new ArrayList<>();
+                this._Weightkg.add(_Weight);
+                this._WeightRM = new ArrayList<>();
+                this._WeightRM.add(ConvertKgToRM(this._Exercises.get(i), _Weight));
+
+            case "rm":
+                this._WeightRM = new ArrayList<>();
+                this._WeightRM.add(_Weight);
+                this._Weightkg = new ArrayList<>();
+                this._Weightkg.add(ConvertRMToKg(this._Exercises.get(i),_Weight));
+
+            default:
+                System.out.println("Error: Unknown weight setting mode! \n Please specify weight in \'kg\' or \'rm\' mode.");
         }
     }
 
@@ -244,7 +249,7 @@ public class Set {
             this._NSets = 1;
             this._RestTimeForSet = 0;
             this._Exercises = new ArrayList<>();
-            this._NExercises = this._Exercises.size();
+            this._Exercises.add(Ex);
             this._NReps = new ArrayList<>();
             this._NReps.add(reps);
             this._Weightkg = new ArrayList<>();
@@ -252,8 +257,9 @@ public class Set {
             this._WeightRM = new ArrayList<>();
             this._WeightRM.add(ConvertKgToRM(Ex, weight));
             this._WorkTime = new ArrayList<>();
+            this._WorkTime.add(0);
             this._RestTimeForExercise = new ArrayList<>();
-
+            this._RestTimeForExercise.add(0);
         }
         else {
             System.out.println("else statement of Add_Exercise method");
@@ -262,20 +268,22 @@ public class Set {
             this._NReps.add(reps);
             this._Weightkg.add(weight);
             this._WeightRM.add(ConvertKgToRM(Ex, weight));
+            this._RestTimeForExercise.add(0);
+            this._WorkTime.add(0);
             System.out.println("out of else statement of Add_Exercise method");
         }
 
         System.out.println("out of Add_Exercise method");
     }
 
-    public double ConvertKgToRM(Exercise Ex, double weightkg){
+    private double ConvertKgToRM(Exercise Ex, double weightkg){
         double weightRM;
         double RM = Ex.get_RM();
         weightRM = Math.round(weightkg/RM *1000);
         weightRM /= 10.;
         return weightRM;
     }
-    public double ConvertRMToKg(Exercise Ex, double weightRM){
+    private double ConvertRMToKg(Exercise Ex, double weightRM){
         double weightkg;
         double RM = Ex.get_RM();
         weightkg = Math.round(weightRM*RM *10.);
