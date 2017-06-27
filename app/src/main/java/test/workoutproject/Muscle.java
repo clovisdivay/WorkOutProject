@@ -20,6 +20,12 @@ public class Muscle {
         this._groupID = gID;
     }
 
+    public Muscle(String name, String group) {
+        this._name = name;
+        MuscleGroup mg = new MuscleGroup(group);
+        this._groupID = mg.get_id();
+    }
+
     public int get_id() {
         return _id;
     }

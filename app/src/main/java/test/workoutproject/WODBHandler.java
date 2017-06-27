@@ -67,7 +67,7 @@ public class WODBHandler extends SQLiteOpenHelper {
 
     // Add a new row to database
     public void addWorkOut(WorkOut WO){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         Date WOdate = WO.get_date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String date = dateFormat.format(WOdate);
@@ -101,7 +101,7 @@ public class WODBHandler extends SQLiteOpenHelper {
     // Print DataBase to String
     public String databaseToString(){
         String dbString = "";
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_WORKOUTS + " WHERE 1";
         Cursor c = db.rawQuery(query,null);
         c.moveToFirst();

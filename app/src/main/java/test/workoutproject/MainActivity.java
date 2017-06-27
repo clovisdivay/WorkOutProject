@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView List;
     WODBHandler wodbHandler;
+    MuscleDBHandler muscleDBHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List = (TextView)findViewById(R.id.WorkOutList);
-        wodbHandler = new WODBHandler(this, null, null, 1);
-        //this.deleteDatabase("workouts.db");
-        Exercise chinups = new Exercise("Chin Ups","PULL",new Muscle("Lats",0));
+        //wodbHandler = new WODBHandler(this, null, null, 1);
+        muscleDBHandler = new MuscleDBHandler(this, null, null,1);
+        /*Exercise chinups = new Exercise("Chin Ups","PULL",new Muscle("Lats",0));
         Exercise curl = new Exercise("Curl","PULL",new Muscle("Biceps",1));
         Exercise marteau = new Exercise("Curl Marteau","PULL",new Muscle("Biceps",1));
         chinups.set_RM(15.);
@@ -39,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
         WorkOut WOTest = new WorkOut();
         WOTest.AddSet(chinupSet);
         WOTest.AddSet(curlSet);
-        Log.d("1","about to mess with db");
+        Log.d("1","about to mess with db");*/
         //List.setText(wodbHandler.getDatabaseName());
-        wodbHandler.addWorkOut(WOTest);
-        List.setText(wodbHandler.databaseToString());
-
+        //wodbHandler.addWorkOut(WOTest);
+        String text = muscleDBHandler.databaseToString();
+        muscleDBHandler.close();
+        List.setText(text);
     }
 }

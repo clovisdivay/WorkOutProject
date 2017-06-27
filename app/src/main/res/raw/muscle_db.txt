@@ -1,0 +1,26 @@
+Bras,Biceps
+Bras,Brachial
+Bras,Brachio-radial
+Bras,Avant-bras
+Bras,Triceps
+Epaules,Deltoïde postérieur
+Epaules,Deltoïde moyen
+Epaules,Deltoïde antérieur
+Pectoraux,Grand pectoral
+Pectoraux,Petit pectoral
+Dos,Trapèzes
+Dos,Grand rond
+Dos,Petit rond
+Dos,Grand rhomboïde
+Dos,Grand dorsal
+Dos,Erecteurs du rachis (lombaires)
+Abdominaux,Droit de l'abdomen
+Abdominaux,Oblique interne
+Abdominaux,Oblique Externe
+Fessiers,Grand fessier
+Fessiers,Moyen fessier
+Jambes,Quadriceps
+Jambes,Adducteurs
+Jambes,Abducteurs
+Jambes,Ischio-jambiers
+Jambes,Mollets

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">WorkOutProject</string>
+
+    <string name="bras">Bras</string>
+    <string name="epaules">Epaules</string>
+    <string name="pecs">Pectoraux</string>
+    <string name="dos">Dos</string>
+    <string name="abdos">Abdominaux</string>
+    <string name="fessiers">Fessierq</string>
+    <string name="jambes">Jambes</string>
+
 </resources>
