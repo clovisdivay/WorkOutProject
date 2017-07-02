@@ -18,6 +18,9 @@ import java.util.Scanner;
 
 /**
  * Created by Clovis on 26/06/2017.
+ *
+ * !!!!!! OBSOLETE CLASS !!!!!!
+ *
  * Classe de création et remplissage de la base de données "muscle"
  */
 
